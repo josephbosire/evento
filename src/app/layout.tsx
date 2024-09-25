@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} text-white bg-gray-950`}>
+      <body
+        className={`${inter.className} text-white bg-gray-950 overflow-y-scroll`}
+      >
         <Container>
           <Header />
           {children}
