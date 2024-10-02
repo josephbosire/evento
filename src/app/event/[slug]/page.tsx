@@ -13,7 +13,6 @@ const EventPage = async ({ params }: EventPageProps) => {
     `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`,
   );
   const event = (await response.json()) as EventoEvent;
-  console.log("Event:", event);
   return (
     <main>
       <section className="relative overflow-hidden flex justify-center items-center py-14 md:py-20">
