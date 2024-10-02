@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import clsx, { ClassValue } from "clsx";
+import { notFound } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
 const prisma = new PrismaClient();
@@ -11,7 +12,7 @@ export const capitalize = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const getEvents = async (city: string) => {
+export const getEvents = async (city: string, page = 1) => {
   //const response = await fetch(
   //`https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`,
   //);
@@ -23,6 +24,8 @@ export const getEvents = async (city: string) => {
     orderBy: {
       date: "asc",
     },
+    take: 6,
+    skip: (page - 1) * 6,
   });
   return events;
 };
@@ -37,5 +40,9 @@ export const getEvent = async (slug: string) => {
       slug: slug,
     },
   });
+
+  if (!event) {
+    return notFound();
+  }
   return event;
 };
