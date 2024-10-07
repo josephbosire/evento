@@ -1,5 +1,5 @@
 import H1 from "@/components/H1";
-import { getEvent } from "@/lib/utils";
+import { getEvent } from "@/lib/server-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -17,6 +17,17 @@ export const generateMetadata = async ({
   return {
     title: event.name,
   };
+};
+
+export const generateStaticParams = async () => {
+  return [
+    {
+      slug: "comedy-extravaganza",
+    },
+    {
+      slug: "dj-practice-session",
+    },
+  ];
 };
 
 const EventPage = async ({ params }: Props) => {
